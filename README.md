@@ -23,24 +23,24 @@ NacosConfig::setSavePath('path');
 ```
 #### 获取配置文件
 ``` php
-Nacos::init( "http://119.91.83.91:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
+Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->run();
 ```
 
 #### 长轮询拉取配置文件
 ``` php
-Nacos::init( "http://119.91.83.91:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
+Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->listener();
 ```
 
 #### 发布配置文件
 ``` php
-Nacos::init( "http://119.91.83.91:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
+Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->publish("sdfsdfsdf","text");
 ```
 
 #### 删除配置文件
 ``` php
-Nacos::init( "http://119.91.83.91:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
+Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
 ->delete();
 ```
