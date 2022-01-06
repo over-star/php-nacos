@@ -16,7 +16,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": ">6.0",
         "monolog/monolog": "^1.24|^2.0",
         "ext-json": "*"
     },
