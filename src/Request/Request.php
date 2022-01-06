@@ -4,18 +4,11 @@ namespace Overstar\PhpNacos\Request;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Overstar\PhpNacos\Exceptions\RequestException;
-use Overstar\PhpNacos\Helpers\EncodeHelper;
 use Overstar\PhpNacos\Helpers\ErrorCodeHelper;
 use Overstar\PhpNacos\Helpers\HttpHelper;
-use Overstar\PhpNacos\NacosConfig;
 use ReflectionException;
 
 
-/**
- * Class Request
- * @author suxiaolin
- * @package alibaba\nacos\Request
- */
 abstract class Request
 {
     /**

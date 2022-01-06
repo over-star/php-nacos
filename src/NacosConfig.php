@@ -4,11 +4,7 @@ namespace Overstar\PhpNacos;
 
 use Monolog\Logger;
 
-/**
- * Class NacosConfig
- * @author suxiaolin
- * @package alibaba\nacos
- */
+
 class NacosConfig
 {
 

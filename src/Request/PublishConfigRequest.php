@@ -2,11 +2,7 @@
 
 namespace Overstar\PhpNacos\Request;
 
-/**
- * Class PublishConfigRequest
- * @author suxiaolin
- * @package alibaba\nacos\request\config
- */
+
 class PublishConfigRequest extends ConfigRequest
 {
     protected $uri = "/nacos/v1/cs/configs";

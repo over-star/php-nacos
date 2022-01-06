@@ -6,11 +6,7 @@ namespace Overstar\PhpNacos\Request;
 
 use ReflectionClass;
 
-/**
- * Class ConfigRequest
- * @author suxiaolin
- * @package alibaba\nacos\Request\config
- */
+
 class ConfigRequest extends Request
 {
     /**

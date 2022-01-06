@@ -25,7 +25,6 @@ class SnapshotHelper
             @unlink($snapshotFile);
         } else {
             $file = new SplFileInfo($snapshotFile);
-            var_dump($file->getPath());
             if (!is_dir($file->getPath())) {
                 mkdir($file->getPath(), 0777, true);
             }

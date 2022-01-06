@@ -6,11 +6,7 @@ namespace Overstar\PhpNacos\Request;
 use Overstar\PhpNacos\Helpers\EncodeHelper;
 use Overstar\PhpNacos\NacosConfig;
 
-/**
- * Class LongPollingConfigRequest
- * @author suxiaolin
- * @package alibaba\nacos\Request\config
- */
+
 class LongPollingConfigRequest extends ConfigRequest
 {
     /**
