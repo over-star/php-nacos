@@ -10,13 +10,18 @@
 ### 安装
 
 ``` bash
-composer require alibaba/nacos
+composer require overstar/php-nacos
 ```
 
 
 ### 使用
 
-#### 配置文件
+#### 设置配置文件保存路径
+默认是config目录
+``` php
+NacosConfig::setSavePath('path');
+```
+#### 获取配置文件
 ``` php
 Nacos::init( "http://119.91.83.91:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->run();
