@@ -23,6 +23,7 @@ NacosConfig::setSavePath('path');
 ```
 #### 获取配置文件
 ``` php
+// 参数：nacos地址,dataId,group,namespace
 Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->run();
 ```
