@@ -3,6 +3,12 @@
     "description": "php for nacos",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "php",
+        "nacos",
+        "alibaba"
+    ],
+    "authors": [ { "name": "overstar", "email": "775397252@qq.com" } ],
     "autoload": {
         "psr-4": {
             "Overstar\\PhpNacos\\": "src/"
