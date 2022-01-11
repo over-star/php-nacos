@@ -20,7 +20,6 @@ class SnapshotHelper
     public static function saveSnapshot($dataId, $config)
     {
         $snapshotFile = self::getSnapshotFile($dataId);
-        echo $snapshotFile;
         if (!$config) {
             @unlink($snapshotFile);
         } else {

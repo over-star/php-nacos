@@ -20,24 +20,14 @@ class NacosClient
     {
         LogHelper::info("配置长轮询监听已经启动..... ");
         $loop = 0;
+        $store=[];
+        if(!is_array($dataId)){
+            $dataId=[$dataId];
+        }
         do {
             $loop++;
-            $listenerConfigRequest = new LongPollingConfigRequest();
-            $listenerConfigRequest->setDataId($dataId);
-            $listenerConfigRequest->setGroup($group);
-            $listenerConfigRequest->setTenant($tenant);
-            $listenerConfigRequest->setContentMD5(md5($config));
-            try {
-                $response = $listenerConfigRequest->doRequest();
-                if ($response->getBody()->getContents()) {
-                    // 配置发生了变化
-                    $config = self::get($dataId, $group, $tenant);
-                    LogHelper::info("配置发生了变化: " . $config);
-                    SnapshotHelper::saveSnapshot($dataId, $config);
-                }
-            } catch (Exception $e) {
-                LogHelper::error("listener请求异常, e: " . $e->getMessage());
-                sleep(5);
+            foreach ($dataId as $key => $id) {
+                $store[$key]['config']=self::one($id, $group, $tenant, $store[$key]['config']??"");
             }
             LogHelper::info("监听轮次：{$loop}");
             sleep(1);
@@ -94,5 +84,37 @@ class NacosClient
         $deleteConfigRequest->setTenant($tenant);
         $response = $deleteConfigRequest->doRequest();
         return $response->getBody()->getContents() == "true";
+    }
+
+    /**
+     * @param $dataId
+     * @param $group
+     * @param  $tenant
+     * @param string $config
+     * @return string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public static function one($dataId, $group, $tenant, string $config)
+    {
+        $listenerConfigRequest = new LongPollingConfigRequest();
+        $listenerConfigRequest->setDataId($dataId);
+        $listenerConfigRequest->setGroup($group);
+        $listenerConfigRequest->setTenant($tenant);
+        $listenerConfigRequest->setContentMD5(md5($config));
+        try {
+            $response = $listenerConfigRequest->doRequest();
+            if ($response->getBody()->getContents()) {
+                // 配置发生了变化
+                $config = self::get($dataId, $group, $tenant);
+                LogHelper::info("[{$dataId}]配置发生了变化: " . $config);
+                SnapshotHelper::saveSnapshot($dataId, $config);
+                return $config;
+            }
+            return $config;
+        } catch (Exception $e) {
+            LogHelper::error("listener请求异常, e: " . $e->getMessage());
+            sleep(2);
+        }
+        return "";
     }
 }

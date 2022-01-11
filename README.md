@@ -32,6 +32,9 @@ Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-
 ``` php
 Nacos::init( "http://127.0.0.1:8848/", "console.php", "js", "0c1201b3-495a-4c14-9259-e798b64fb6e8" )
     ->listener();
+    
+Nacos::init("http://127.0.0.1:8848/", ["db.php","web.php"], "js", "7e3d37db-2911-4074-950b-4b98b7a50243")
+    ->listener();
 ```
 
 #### 发布配置文件
