@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Overstar\PhpNacos;
-
 
 use Exception;
 use Overstar\PhpNacos\Exceptions\RequestException;
@@ -13,21 +11,20 @@ use Overstar\PhpNacos\Request\GetConfigRequest;
 use Overstar\PhpNacos\Request\LongPollingConfigRequest;
 use Overstar\PhpNacos\Request\PublishConfigRequest;
 
-
 class NacosClient
 {
-    public static function listener($dataId, $group, $config, $tenant = "")
+    public static function listener($dataId, $group, $tenant = "")
     {
         LogHelper::info("配置长轮询监听已经启动..... ");
-        $loop = 0;
-        $store=[];
-        if(!is_array($dataId)){
-            $dataId=[$dataId];
+        $loop  = 0;
+        $store = [];
+        if (!is_array($dataId)) {
+            $dataId = [$dataId];
         }
         do {
             $loop++;
             foreach ($dataId as $key => $id) {
-                $store[$key]['config']=self::one($id, $group, $tenant, $store[$key]['config']??"");
+                $store[$key]['config'] = self::onceListen($id, $group, $tenant, $store[$key]['config'] ?? "");
             }
             LogHelper::info("监听轮次：{$loop}");
             sleep(1);
@@ -65,7 +62,7 @@ class NacosClient
         $publishConfigRequest->setGroup($group);
         $publishConfigRequest->setTenant($tenant);
         $publishConfigRequest->setContent($args[0]);
-        $publishConfigRequest->setType(isset($args[1]) ? $args[1] : 'text');
+        $publishConfigRequest->setType($args[1] ?? 'text');
         try {
             $response = $publishConfigRequest->doRequest();
         } catch (Exception $e) {
@@ -94,7 +91,7 @@ class NacosClient
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public static function one($dataId, $group, $tenant, string $config)
+    public static function onceListen($dataId, $group, $tenant, string $config): string
     {
         $listenerConfigRequest = new LongPollingConfigRequest();
         $listenerConfigRequest->setDataId($dataId);

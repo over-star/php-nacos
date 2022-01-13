@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Overstar\PhpNacos;
-
 
 class Nacos
 {
@@ -30,7 +28,7 @@ class Nacos
 
     public function listener()
     {
-        call_user_func_array([self::$clientClass, "listener"], [NacosConfig::getDataId(), NacosConfig::getGroup(), '', NacosConfig::getTenant()]);
+        call_user_func_array([self::$clientClass, "listener"], [NacosConfig::getDataId(), NacosConfig::getGroup(), NacosConfig::getTenant()]);
         return $this;
     }
 
@@ -39,5 +37,4 @@ class Nacos
         call_user_func_array([self::$clientClass, $name], [NacosConfig::getDataId(), NacosConfig::getGroup(), NacosConfig::getTenant(), $args]);
         return $this;
     }
-
 }

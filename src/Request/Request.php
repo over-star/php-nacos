@@ -8,7 +8,6 @@ use Overstar\PhpNacos\Helpers\ErrorCodeHelper;
 use Overstar\PhpNacos\Helpers\HttpHelper;
 use ReflectionException;
 
-
 abstract class Request
 {
     /**
@@ -47,7 +46,7 @@ abstract class Request
         );
 
         if (isset(ErrorCodeHelper::getErrorCodeMap()[$response->getStatusCode()])) {
-            throw new RequestException(ErrorCodeHelper::getErrorCodeMap()[$response->getStatusCode()],$response->getStatusCode());
+            throw new RequestException(ErrorCodeHelper::getErrorCodeMap()[$response->getStatusCode()], $response->getStatusCode());
         }
         return $response;
     }
@@ -92,5 +91,4 @@ abstract class Request
     {
         $this->uri = $uri;
     }
-
 }

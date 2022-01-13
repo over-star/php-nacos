@@ -4,10 +4,8 @@ namespace Overstar\PhpNacos;
 
 use Monolog\Logger;
 
-
 class NacosConfig
 {
-
     /**
      * @var string 项目名
      */
@@ -62,13 +60,6 @@ class NacosConfig
      * @var
      */
     private static $host;
-
-    /**
-     * 是否调试模式
-     *
-     * @var
-     */
-    private static $isDebug = false;
 
     /**
      * @return string

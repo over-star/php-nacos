@@ -3,3 +3,4 @@
 /vendor
 /vendor/
 /src/example.php
+/.php-cs-fixer.cache
