@@ -1,0 +1,17 @@
+version: "3"
+services:
+  php-cli:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    restart: always
+    container_name: php-cli
+    working_dir: /var/www
+    volumes:
+      - ./php/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./:/var/www
+    stdin_open: true
+    tty: true
+    command: php /var/www/example.php
+    environment:
+      - TZ=Asia/Shanghai
